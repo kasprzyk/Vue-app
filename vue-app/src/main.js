@@ -4,6 +4,14 @@ import "./registerServiceWorker";
 import router from "./router";
 import store from "./store";
 import vuetify from "./plugins/vuetify";
+Vue.component("LoaderDialog", () =>
+  import(/* webpackChunkName: "loaderDialog" */ "@/subcomponents/LoaderDialog")
+);
+Vue.component("BooleanFilterSelect", () =>
+  import(
+    /* webpackChunkName: "booleanFilterSelect" */ "@/subcomponents/BooleanFilterSelect"
+  )
+);
 
 Vue.config.productionTip = false;
 

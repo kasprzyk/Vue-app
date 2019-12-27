@@ -31,6 +31,7 @@
 import StartView from "./components/HelloWorld";
 
 export default {
+  name: "App",
   components: {
     StartView
   },
