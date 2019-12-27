@@ -1,13 +1,34 @@
 <template>
-  <v-app id="inspire" :dark="themeMode == 'dark'">
+  <v-app id="inspire">
     <v-navigation-drawer v-model="drawer" clipped fixed app>
       <v-list dense>
         <v-list-group value="true">
           <template v-slot:activator>
-            <v-list-tile>
-              <v-list-tile-title>Konfiguracja</v-list-tile-title>
-            </v-list-tile>
+            <v-list-item-title>Configuration</v-list-item-title>
           </template>
+          <v-list-group
+            no-action
+            sub-group
+            value="true"
+            append-icon="dashboard"
+          >
+            <template v-slot:activator>
+              <v-list-item-content>
+                <v-list-item-title>Building type</v-list-item-title>
+              </v-list-item-content>
+            </template>
+
+            <v-list-item
+              v-for="(buildingTypeViews, i) in buildingTypeViews"
+              :key="i"
+              @click.stop
+            >
+              <v-list-item-title
+                @click="changeView(buildingTypeViews)"
+                v-text="buildingTypeViews[0]"
+              ></v-list-item-title>
+            </v-list-item>
+          </v-list-group>
         </v-list-group>
       </v-list>
     </v-navigation-drawer>
@@ -17,6 +38,7 @@
         <v-row justify="center" align="center">
           <v-col>
             <StartView v-if="view == 'home'" />
+            <BuildingType v-if="view == 'Building type'" />
           </v-col>
         </v-row>
       </v-container>
@@ -29,18 +51,30 @@
 
 <script>
 import StartView from "./components/HelloWorld";
-
+//import loading from "./subcomponents/LoadingAnimation";
+const BuildingType = () => ({
+  component: import("./components/BuildingType")
+});
 export default {
   name: "App",
   components: {
-    StartView
+    StartView,
+    BuildingType
   },
   data: () => ({
     drawer: null,
-    view: "home"
+    view: "home",
+    buildingTypeViews: [["Building type", "building_type"]]
   }),
   created() {
     console.log(this);
+  },
+  methods: {
+    changeView(viewName) {
+      // eslint-disable-next-line
+      this.view = viewName[0];
+      console.log("viewName: ", this.view);
+    }
   }
 };
 </script>
