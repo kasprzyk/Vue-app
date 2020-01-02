@@ -24,8 +24,8 @@ export default {
   data: () => ({
     selectedItem: null,
     items: [
-      { text: "Tak", value: "true" },
-      { text: "Nie", value: "false" }
+      { text: "Yes", value: "true" },
+      { text: "No", value: "false" }
     ]
   }),
   watch: {

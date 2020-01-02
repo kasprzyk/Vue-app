@@ -7,7 +7,15 @@
       <v-row justify="end">
         <v-dialog v-model="dialog" max-width="500px" persistent>
           <template v-slot:activator="{ on }">
-            <v-btn tile color="primary" dark class="mx-2" :disabled="readOnly" v-on="on">Dodaj</v-btn>
+            <v-btn
+              tile
+              color="primary"
+              dark
+              class="mx-2"
+              :disabled="readOnly"
+              v-on="on"
+              >Add</v-btn
+            >
           </template>
           <v-form ref="form" v-model="valid" lazy-validation>
             <v-card>
@@ -24,7 +32,7 @@
                         label="Code"
                         :rules="codeRules"
                         required
-                        :disabled="editedIndex > -1 || readOnly"
+                        :disabled="isEditMode || readOnly"
                       ></v-text-field>
                     </v-col>
                     <v-col cols="12" sm="12" md="12">
@@ -58,8 +66,17 @@
 
               <v-card-actions>
                 <v-spacer></v-spacer>
-                <v-btn tile color="blue darken-1" text @click="close">Anuluj</v-btn>
-                <v-btn tile color="blue darken-1" text :disabled="readOnly" @click="save">Zapisz</v-btn>
+                <v-btn tile color="blue darken-1" text @click="close"
+                  >Anuluj</v-btn
+                >
+                <v-btn
+                  tile
+                  color="blue darken-1"
+                  text
+                  :disabled="readOnly"
+                  @click="save"
+                  >Zapisz</v-btn
+                >
               </v-card-actions>
             </v-card>
           </v-form>
@@ -73,17 +90,29 @@
         <v-container>
           <v-row justify="space-between">
             <v-col cols="12" md="2">
-              <v-text-field v-model="search.code.valueList[0]" label="Code"></v-text-field>
+              <v-text-field
+                v-model="search.code.valueList[0]"
+                label="Code"
+              ></v-text-field>
             </v-col>
             <v-col cols="12" md="2">
-              <v-text-field v-model="search.name.valueList[0]" label="Name"></v-text-field>
+              <v-text-field
+                v-model="search.name.valueList[0]"
+                label="Name"
+              ></v-text-field>
             </v-col>
 
             <v-col cols="12" md="2">
-              <v-text-field v-model="search.description.valueList[0]" label="Description"></v-text-field>
+              <v-text-field
+                v-model="search.description.valueList[0]"
+                label="Description"
+              ></v-text-field>
             </v-col>
             <v-col cols="12" md="3">
-              <BooleanFilterSelect v-model="search.isActive.valueList[0]" label="Is Active" />
+              <BooleanFilterSelect
+                v-model="search.isActive.valueList[0]"
+                label="Is Active"
+              />
             </v-col>
           </v-row>
         </v-container>
@@ -106,15 +135,20 @@
           <td>{{ props.item.description }}</td>
           <td>{{ props.item.isActive | isActive }}</td>
           <td class="justify-center">
-            <v-icon small class="mr-2" @click="editItem(props.item)">edit</v-icon>
+            <v-icon small class="mr-2" @click="editItem(props.item)"
+              >edit</v-icon
+            >
           </td>
         </tr>
       </template>
       <template v-slot:no-data>
-        <v-btn tile color="primary" @click="getDictionary">Odśwież</v-btn>
+        <v-btn tile color="primary" @click="getDictionary">Refresh</v-btn>
       </template>
     </v-data-table>
-    <LoaderDialog :loading-dialog="loadingDialog" :loading-dialog-text="loadingDialogText" />
+    <LoaderDialog
+      :loading-dialog="loadingDialog"
+      :loading-dialog-text="loadingDialogText"
+    />
   </v-container>
 </template>
 
@@ -134,7 +168,7 @@ export default {
       { text: "Description", value: "description" },
       { text: "Is Active:", value: "isActive" }
     ],
-    editedIndex: -1,
+    isEditMode: false,
     search: {
       code: {
         valueList: [""],
@@ -179,9 +213,7 @@ export default {
 
   computed: {
     formTitle() {
-      return this.editedIndex === -1
-        ? "New building type"
-        : "Building type edit";
+      return this.isEditMode ? "New building type" : "Building type edit";
     }
   },
 
@@ -206,7 +238,7 @@ export default {
 
   methods: {
     editItem(item) {
-      this.editedIndex = this.items.indexOf(item);
+      this.isEditMode = true;
       this.editedItem = JSON.parse(JSON.stringify(item));
       this.dialog = true;
     },
@@ -217,7 +249,7 @@ export default {
       /* timeout jest ok, ponieważ aktualizujemy dane dopiero jak zamknie się modal */
       setTimeout(() => {
         this.editedItem = JSON.parse(JSON.stringify(this.defaultItem));
-        this.editedIndex = -1;
+        this.isEditMode = false;
         this.$refs.form.resetValidation();
       }, 300);
     },
@@ -250,8 +282,7 @@ export default {
       this.loadingDialog = true;
       this.loadingDialogText = "Updating position in progress";
       if (this.validate()) {
-        if (this.editedIndex > -1) {
-          //Object.assign(this.items[this.editedIndex], this.editedItem);
+        if (this.isEditMode) {
           let params = {
             caseObject: this.editedItem
           };
