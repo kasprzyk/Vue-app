@@ -16,3 +16,4 @@ router.post("/getDictionary", (req, res) => {
     res.end();
   }, 200);
 });
+module.exports = router;

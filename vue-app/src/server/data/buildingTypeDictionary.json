@@ -1,0 +1,39 @@
+{
+  "data": {
+    "data": {
+      "results": {
+        "items": [
+          {
+            "name": "Lorem ipsum dolor sit amet",
+            "code": "1_Lorem ipsum dolor sit amet, consectetuer adipiscing elit. ",
+            "isActive": true,
+            "premisesLimit": 21,
+            "description": "Lorem  Integer tincidunt. Cras dapibu"
+          },
+          {
+            "name": "Lorem ipsum dolor sit amet",
+            "code": "2_Lorem ipsum dolor sit amet",
+            "isActive": false,
+            "premisesLimit": 3,
+            "description": "Lorem  Integer tincidunt. Cras dapibu"
+          },
+          {
+            "name": "Lorem ipsum dolor sit amet",
+            "code": "3_Lorem ipsum dolor sit amet",
+            "isActive": true,
+            "premisesLimit": 10,
+            "description": "Lorem  Integer tincidunt. Cras dapibu"
+          },
+          {
+            "name": "Lorem ipsum dolor sit amet",
+            "code": "4_Lorem ipsum dolor sit amet",
+            "premisesLimit": 12,
+            "description": "Lorem  Integer tincidunt. Cras dapibu",
+            "isActive": false
+          }
+        ]
+      }
+    },
+    "total": 4
+  }
+}
