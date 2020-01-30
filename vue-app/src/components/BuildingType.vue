@@ -7,15 +7,7 @@
       <v-row justify="end">
         <v-dialog v-model="dialog" max-width="500px" persistent>
           <template v-slot:activator="{ on }">
-            <v-btn
-              tile
-              color="primary"
-              dark
-              class="mx-2"
-              :disabled="readOnly"
-              v-on="on"
-              >Add</v-btn
-            >
+            <v-btn tile color="primary" dark class="mx-2" :disabled="readOnly" v-on="on">Add</v-btn>
           </template>
           <v-form ref="form" v-model="valid" lazy-validation>
             <v-card>
@@ -66,17 +58,8 @@
 
               <v-card-actions>
                 <v-spacer></v-spacer>
-                <v-btn tile color="blue darken-1" text @click="close"
-                  >Anuluj</v-btn
-                >
-                <v-btn
-                  tile
-                  color="blue darken-1"
-                  text
-                  :disabled="readOnly"
-                  @click="save"
-                  >Zapisz</v-btn
-                >
+                <v-btn tile color="blue darken-1" text @click="close">Anuluj</v-btn>
+                <v-btn tile color="blue darken-1" text :disabled="readOnly" @click="save">Zapisz</v-btn>
               </v-card-actions>
             </v-card>
           </v-form>
@@ -90,29 +73,17 @@
         <v-container>
           <v-row justify="space-between">
             <v-col cols="12" md="2">
-              <v-text-field
-                v-model="search.code.valueList[0]"
-                label="Code"
-              ></v-text-field>
+              <v-text-field v-model="search.code.valueList[0]" label="Code"></v-text-field>
             </v-col>
             <v-col cols="12" md="2">
-              <v-text-field
-                v-model="search.name.valueList[0]"
-                label="Name"
-              ></v-text-field>
+              <v-text-field v-model="search.name.valueList[0]" label="Name"></v-text-field>
             </v-col>
 
             <v-col cols="12" md="2">
-              <v-text-field
-                v-model="search.description.valueList[0]"
-                label="Description"
-              ></v-text-field>
+              <v-text-field v-model="search.description.valueList[0]" label="Description"></v-text-field>
             </v-col>
             <v-col cols="12" md="3">
-              <BooleanFilterSelect
-                v-model="search.isActive.valueList[0]"
-                label="Is Active"
-              />
+              <BooleanFilterSelect v-model="search.isActive.valueList[0]" label="Is Active" />
             </v-col>
           </v-row>
         </v-container>
@@ -126,7 +97,6 @@
       :loading="loading"
       :options.sync="pagination"
       :server-items-length="total"
-      :footer-props="{ itemsPerPageOptions: rowsPerPage }"
     >
       <template v-slot:item="props">
         <tr>
@@ -135,9 +105,7 @@
           <td>{{ props.item.description }}</td>
           <td>{{ props.item.isActive | isActive }}</td>
           <td class="justify-center">
-            <v-icon small class="mr-2" @click="editItem(props.item)"
-              >edit</v-icon
-            >
+            <v-icon small class="mr-2" @click="editItem(props.item)">edit</v-icon>
           </td>
         </tr>
       </template>
@@ -145,10 +113,7 @@
         <v-btn tile color="primary" @click="getDictionary">Refresh</v-btn>
       </template>
     </v-data-table>
-    <LoaderDialog
-      :loading-dialog="loadingDialog"
-      :loading-dialog-text="loadingDialogText"
-    />
+    <LoaderDialog :loading-dialog="loadingDialog" :loading-dialog-text="loadingDialogText" />
   </v-container>
 </template>
 
@@ -162,6 +127,8 @@ export default {
   },
   data: () => ({
     dialog: false,
+    items: [],
+    loading: false,
     headers: [
       { text: "Code", value: "code" },
       { text: "Name", value: "name" },
@@ -196,7 +163,11 @@ export default {
       }
     },
     editedItem: {},
+    total: null,
+    itemsPerPageOptions: {},
     defaultItem: {},
+    rowsPerPage: 5,
+    pagination: null,
     valid: true,
     codeRules: [
       v => !!v || "Code is required",
@@ -230,10 +201,6 @@ export default {
       },
       deep: true
     }
-  },
-
-  mounted() {
-    this.rowsPerPage = this.$store.getters.getPagination;
   },
 
   methods: {
