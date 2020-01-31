@@ -12,7 +12,7 @@ Vue.component("BooleanFilterSelect", () =>
     /* webpackChunkName: "booleanFilterSelect" */ "@/subcomponents/BooleanFilterSelect"
   )
 );
-Vue.prototype.ajaxUrls = window.fpmAjaxUrls;
+Vue.prototype.ajaxUrls = window.ajaxUrls;
 Vue.config.productionTip = false;
 
 new Vue({
