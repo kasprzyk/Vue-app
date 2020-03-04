@@ -53,14 +53,14 @@
                       ></v-text-field>
                     </v-col>
                     <v-col cols="6" md="4">
-                      <SimpleDictionarySelect
+                      <SimpleDictionary
                         v-model="editedItemModal.variantOfDocumentation"
                         :disabled="readOnly"
                         label="Variant Of Documentation"
                         dictionary-name="VariantOfDocumentation"
                         :rules="basicRules"
                         return-object
-                      ></SimpleDictionarySelect>
+                      ></SimpleDictionary>
                     </v-col>
                     <v-col cols="6" md="4">
                       <DatePicker
@@ -89,14 +89,14 @@
                       />
                     </v-col>
                     <v-col cols="6" md="4">
-                      <SimpleDictionarySelect
+                      <SimpleDictionary
                         v-model="editedItemModal.type"
                         :disabled="readOnly"
                         label="Project Type"
                         dictionary-name="ProjectType"
                         :rules="basicRules"
                         return-object
-                      ></SimpleDictionarySelect>
+                      ></SimpleDictionary>
                     </v-col>
                     <v-col cols="6" md="4">
                       <BasicContractorSelect
@@ -168,13 +168,13 @@
                       />
                     </v-col>
                     <v-col cols="6" md="4">
-                      <SimpleDictionarySelect
+                      <SimpleDictionary
                         v-model="editedItemModal.status"
                         :disabled="readOnly"
                         label="Status"
                         dictionary-name="Status"
                         return-object
-                      ></SimpleDictionarySelect>
+                      ></SimpleDictionary>
                     </v-col>
                   </v-row>
                 </v-card-text>
@@ -197,9 +197,12 @@
 </template>
 
 <script>
+import SimpleDictionary from "@/subcomponents/SimpleDictionary.vue";
 export default {
   name: "BuildingProject",
-  components: {},
+  components: {
+    SimpleDictionary
+  },
   props: {
     editedItem: {
       type: Object,
@@ -238,11 +241,10 @@ export default {
     modalContext: "",
     defaultItem: {
       mrcCaseHeader: {},
-      variantOfDocumentation: { code: "D01", name: "D01" },
+      variantOfDocumentation: { code: "X01", name: "X01" },
       type: null,
       implementerProject: {},
-      taskList: {},
-      delayReason: {}
+      taskList: {}
     },
     documentTypes: [
       {
