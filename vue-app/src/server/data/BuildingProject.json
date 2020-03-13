@@ -1,0 +1,136 @@
+{
+  "data": {
+    "data": {
+      "recordsFiltered": 100,
+      "recordsTotal": 470,
+      "results": {
+        "items": [
+          {
+            "header": {
+              "caseId": "242453461",
+              "createDate": "2019-03-24T13:39:05.268Z",
+              "typeCode": "BuildingProject"
+            },
+            "archiveNumber": "PRB-000001",
+            "name": "TEST",
+            "variantOfDocumentation": {
+              "header": {},
+              "dictionaryName": "VariantOfDocumentation",
+              "name": "D01",
+              "code": "D01"
+            },
+            "executor": {
+              "header": {},
+              "gid": "32545",
+              "acronym": "exe_1",
+              "name": "executor 1"
+            },
+            "implementerProject": {
+              "items": [
+                {
+                  "header": {},
+                  "login": "test",
+                  "fullName": "test"
+                }
+              ]
+            },
+            "coordinator": {
+              "header": {},
+              "login": "random.user",
+              "fullName": "Random User"
+            },
+            "projectManager": {
+              "header": {},
+              "login": "projectManager",
+              "fullName": "projectManager"
+            },
+            "investmentCategory": {
+              "header": {
+                "caseId": "136545",
+                "typeCode": "InvestmentCategory"
+              },
+              "code": "code_01",
+              "name": "ZZZ"
+            },
+            "endDate": "2019-01-29T18:32:03.268Z",
+            "type": {
+              "header": {},
+              "dictionaryName": "ProjectType",
+              "name": "przyłącze",
+              "code": "terminal"
+            },
+            "documentList": {
+              "itemst": [
+                {
+                  "documentId": 35235235,
+                  "documentTypeId": 234235,
+                  "documentTypeName": "name",
+                  "documentName": "name",
+                  "createDate": "2019-01-29T18:32:03.268Z",
+                  "author": "Me",
+                  "version": 1
+                },
+                {
+                  "documentId": 35235235,
+                  "documentTypeId": 234235,
+                  "documentTypeName": "name",
+                  "documentName": "name",
+                  "createDate": "2019-01-29T18:32:03.268Z",
+                  "author": "Ja",
+                  "version": 1
+                },
+                {
+                  "documentId": 35235235,
+                  "documentTypeId": 234235,
+                  "documentTypeName": "name",
+                  "documentName": "name",
+                  "createDate": "2019-01-29T18:32:03.268Z",
+                  "author": "Ja",
+                  "version": 1
+                },
+                {
+                  "documentId": 35235235,
+                  "documentTypeId": 234235,
+                  "documentTypeName": "name",
+                  "documentName": "name",
+                  "createDate": "2019-01-29T18:32:03.268Z",
+                  "author": "Ja",
+                  "version": 1
+                }
+              ]
+            },
+            "status": {
+              "header": {},
+              "dictionaryName": "projectStatus",
+              "name": "Status",
+              "code": "Status_1"
+            },
+            "tasksList": {
+              "items": [
+                {
+                  "header": {},
+                  "task": {
+                    "header": {},
+                    "actionName": "name",
+                    "code": "code",
+                    "name": "name",
+                    "isRequired": true,
+                    "ruleName": "name"
+                  },
+                  "status": {
+                    "header": {},
+                    "dictionaryName": "projectStatus",
+                    "name": "Status",
+                    "code": "Status_1"
+                  }
+                }
+              ]
+            },
+            "archiveNumber": "numer/archiwum/realizacji",
+            "createDate": "2019-03-05T13:39:05.268Z"
+          }
+        ]
+      }
+    }
+  }
+}
