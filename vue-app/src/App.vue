@@ -29,6 +29,30 @@
               ></v-list-item-title>
             </v-list-item>
           </v-list-group>
+          <v-list-group
+            no-action
+            sub-group
+            value="true"
+            append-icon="dashboard"
+          >
+            <template v-slot:activator>
+              <v-list-item-content>
+                <v-list-item-title>Project documentation</v-list-item-title>
+              </v-list-item-content>
+            </template>
+
+            <v-list-item
+              v-for="(projectDocumentationViews,
+              i) in projectDocumentationViews"
+              :key="i"
+              @click.stop
+            >
+              <v-list-item-title
+                @click="changeView(projectDocumentationViews)"
+                v-text="projectDocumentationViews[0]"
+              ></v-list-item-title>
+            </v-list-item>
+          </v-list-group>
         </v-list-group>
       </v-list>
     </v-navigation-drawer>
@@ -39,6 +63,7 @@
           <v-col>
             <StartView v-if="view == 'home'" />
             <BuildingType v-if="view == 'Building type'" />
+            <ProjectDocumentation v-if="view == 'Project documentation'" />
           </v-col>
         </v-row>
       </v-container>
@@ -55,16 +80,23 @@ import StartView from "./components/HelloWorld";
 const BuildingType = () => ({
   component: import("./components/BuildingType")
 });
+const ProjectDocumentation = () => ({
+  component: import("./components/projectDocumentation/ProjectDocumentation")
+});
 export default {
   name: "App",
   components: {
     StartView,
-    BuildingType
+    BuildingType,
+    ProjectDocumentation
   },
   data: () => ({
     drawer: null,
     view: "home",
-    buildingTypeViews: [["Building type", "building_type"]]
+    buildingTypeViews: [["Building type", "building_type"]],
+    projectDocumentationViews: [
+      ["Project documentation", "project_documentation"]
+    ]
   }),
   created() {
     console.log(this);

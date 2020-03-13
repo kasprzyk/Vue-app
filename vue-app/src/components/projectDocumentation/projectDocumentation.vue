@@ -154,15 +154,17 @@
 //   import(
 //     "@/components/"
 //   );
-
+import getDictionaryMixin from "@/mixins/getDictionary";
 export default {
   name: "ProjectDocumentation",
   components: {},
+  mixins: [getDictionaryMixin],
 
   data: () => ({
     dictionaryNameStatus: "documentation",
     actionTypeDict: [{ name: "Building Project", code: "BuildingProject" }],
     show: false,
+    loading: false,
     headers: [
       { text: "Type", value: "actionType", sortable: false },
       { text: "Archive Number	", value: "archiveNumber" },
@@ -196,6 +198,54 @@ export default {
         operator: "Equals",
         type: "TEXT",
         fieldName: "typeTypeCodeValue"
+      },
+      archiveNumber: {
+        valueList: [""],
+        operator: "Contains",
+        type: "TEXT",
+        fieldName: "archiveNumber"
+      },
+      name: {
+        valueList: [""],
+        operator: "Contains",
+        type: "TEXT",
+        fieldName: "name"
+      },
+      executor: {
+        valueList: [],
+        operator: "Equals",
+        type: "TEXT",
+        fieldName: "executor.number"
+      },
+      implementerProject: {
+        valueList: [],
+        operator: "Equals",
+        type: "TEXT",
+        fieldName: "implementerProject.login"
+      },
+      projectManager: {
+        valueList: [],
+        operator: "Equals",
+        type: "TEXT",
+        fieldName: "projectManager.login"
+      },
+      investmentCategory: {
+        valueList: [],
+        operator: "Equals",
+        type: "TEXT",
+        fieldName: "investmentCategory.code"
+      },
+      endDate: {
+        valueList: [""],
+        operator: "Range",
+        type: "DATE",
+        fieldName: "custom_endDate"
+      },
+      status: {
+        valueList: [],
+        operator: "Equals",
+        type: "TEXT",
+        fieldName: "status.code"
       }
     },
     BuildingProjectInitialized: false
